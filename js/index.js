@@ -1,4 +1,4 @@
-//DAY8
+//DAY4
 
 console.log('Hello, world! This is a test.');
 let age = 20;
