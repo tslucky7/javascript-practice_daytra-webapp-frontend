@@ -194,36 +194,69 @@ const sampleFunction = a => a + 100;
 
 //day12
 
-const str = "123";
-console.log(parseInt(str)); // 123
-console.log(parseFloat(str)); // 123
+// const str = "123";
+// console.log(parseInt(str)); // 123
+// console.log(parseFloat(str)); // 123
 
-const int = 123;
-console.log(String(int)); // "123"
+// const int = 123;
+// console.log(String(int)); // "123"
 
-let user = {
-  name: "Alice",
-  age: 25,
-  isAdmin: true
-};
+// let user = {
+//   name: "Alice",
+//   age: 25,
+//   isAdmin: true
+// };
 
-console.log(Object.keys(user)); // ["name", "age", "isAdmin"]
-console.log(Object.values(user)); // ["Alice", 25, true]
-console.log(Object.entries(user)); // [["name", "Alice"], ["age", 25], ["isAdmin", true]]
+// console.log(Object.keys(user)); // ["name", "age", "isAdmin"]
+// console.log(Object.values(user)); // ["Alice", 25, true]
+// console.log(Object.entries(user)); // [["name", "Alice"], ["age", 25], ["isAdmin", true]]
 
-const employees = [
-  { name: "Alice", age: 25, salary: 50000 },
-  { name: "Bob", age: 30, salary: 40000 },
-  { name: "Charlie", age: 35, salary: 60000 },
-];
+// const employees = [
+//   { name: "Alice", age: 25, salary: 50000 },
+//   { name: "Bob", age: 30, salary: 40000 },
+//   { name: "Charlie", age: 35, salary: 60000 },
+// ];
 
-console.log(employees);
+// console.log(employees);
 
-const highEarningEmployees = Object.entries(employees)
-.filter(([name, details]) => {
-  return details.salary >= 50000;
-})
-.map(([name, details]) => {
-  return { name: name, details: details.salary };
+// const highEarningEmployees = Object.entries(employees)
+// .filter(([name, details]) => {
+//   return details.salary >= 50000;
+// })
+// .map(([name, details]) => {
+//   return { name: name, details: details.salary };
+// });
+// console.log(highEarningEmployees);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const testId = document.getElementById("test-id");
+  console.log(testId);
+
+  const testClassList = document.getElementsByClassName("test-class");
+  console.log(testClassList);
+
+  const allParagraphs = document.getElementsByTagName("p");
+  console.log(allParagraphs[1].textContent);
+
+  const firstParagraph = document.querySelector(".test-class");
+  console.log(firstParagraph);
+
+  const allParagraphList = document.querySelectorAll("test-class");
+  console.log(allParagraphList);
+
+  testId.removeChild(firstParagraph);
 });
-console.log(highEarningEmployees);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const newParagraph = document.createElement("p");
+  newParagraph.textContent = "新しい段落が追加されました。";
+
+  newParagraph.setAttribute("class", "highlight");
+
+  newParagraph.style.color = "red";
+  // console.log(newParagraph.style);
+
+  const myDiv = document.getElementById("my-div");
+  myDiv.appendChild(newParagraph);
+  myDiv.innerHTML += "<p>新しい段落が追加されました。</p>";
+});
