@@ -228,35 +228,71 @@ const sampleFunction = a => a + 100;
 // });
 // console.log(highEarningEmployees);
 
+//day13
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const testId = document.getElementById("test-id");
+//   console.log(testId);
+
+//   const testClassList = document.getElementsByClassName("test-class");
+//   console.log(testClassList);
+
+//   const allParagraphs = document.getElementsByTagName("p");
+//   console.log(allParagraphs[1].textContent);
+
+//   const firstParagraph = document.querySelector(".test-class");
+//   console.log(firstParagraph);
+
+//   const allParagraphList = document.querySelectorAll("test-class");
+//   console.log(allParagraphList);
+
+//   testId.removeChild(firstParagraph);
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const newParagraph = document.createElement("p");
+//   newParagraph.textContent = "新しい段落が追加されました。";
+
+//   newParagraph.setAttribute("class", "highlight");
+
+//   newParagraph.style.color = "red";
+//   // console.log(newParagraph.style);
+
+//   const myDiv = document.getElementById("my-div");
+//   myDiv.appendChild(newParagraph);
+//   myDiv.innerHTML += "<p>新しい段落が追加されました。</p>";
+// });
+
+//day14
+
 document.addEventListener("DOMContentLoaded", () => {
-  const testId = document.getElementById("test-id");
-  console.log(testId);
+  const button = document.getElementById("my-button");
+  button.addEventListener("click", () => {
+    const test = document.getElementById("test");
+    test.textContent = "ボタンがクリックされました！";
+  });
 
-  const testClassList = document.getElementsByClassName("test-class");
-  console.log(testClassList);
+  const div = document.getElementById("my-div");
+  div.addEventListener("mouseover", () => {
+    div.textContent = "マウスオーバーしました！";
+  });
 
-  const allParagraphs = document.getElementsByTagName("p");
-  console.log(allParagraphs[1].textContent);
+  div.addEventListener("mouseout", () => {
+    div.textContent = "マウスアウトしました！";
+  });
 
-  const firstParagraph = document.querySelector(".test-class");
-  console.log(firstParagraph);
+  const input = document.getElementById("keydown-input");
+  input.addEventListener("keydown", (event) => {
+    console.log(`キーが押されました: ${event.key}`);
+  });
+  input.addEventListener("keyup", (event) => {
+    console.log(`キーが離されました: ${event.key}`);
+  });
 
-  const allParagraphList = document.querySelectorAll("test-class");
-  console.log(allParagraphList);
-
-  testId.removeChild(firstParagraph);
+  const nameInput = document.getElementById("name-input");
+  nameInput.addEventListener("input", () => {
+    const nameSpan = document.getElementById("name");
+    nameSpan.textContent = nameInput.value;
+  });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const newParagraph = document.createElement("p");
-  newParagraph.textContent = "新しい段落が追加されました。";
-
-  newParagraph.setAttribute("class", "highlight");
-
-  newParagraph.style.color = "red";
-  // console.log(newParagraph.style);
-
-  const myDiv = document.getElementById("my-div");
-  myDiv.appendChild(newParagraph);
-  myDiv.innerHTML += "<p>新しい段落が追加されました。</p>";
-});
