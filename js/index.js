@@ -137,25 +137,25 @@
 // }
 
 //day11
-function greet(name) {
-  console.log("こんにちは、" + name + "さん！");
-}
+// function greet(name) {
+//   console.log("こんにちは、" + name + "さん！");
+// }
 
-greet("太郎");
+// greet("太郎");
 
-function filterNamesBySubstring(names, substring) {
-  const filteredNames = [];
-  for (let name of names) {
-    if (name.includes(substring)) {
-      filteredNames.push(name);
-    }
-  }
-  return filteredNames;
-}
+// function filterNamesBySubstring(names, substring) {
+//   const filteredNames = [];
+//   for (let name of names) {
+//     if (name.includes(substring)) {
+//       filteredNames.push(name);
+//     }
+//   }
+//   return filteredNames;
+// }
 
-const namesArray = ["Alice", "Bob", "Charlie", "David"];
-const filteredNames = filterNamesBySubstring(namesArray, "a");
-console.log("フィルタリングされた名前: " + filteredNames.join(", "));
+// const namesArray = ["Alice", "Bob", "Charlie", "David"];
+// const filteredNames = filterNamesBySubstring(namesArray, "a");
+// console.log("フィルタリングされた名前: " + filteredNames.join(", "));
 
 // const sampleFunction = () => {
 // 	return a + 100;
@@ -167,27 +167,63 @@ console.log("フィルタリングされた名前: " + filteredNames.join(", "))
 const sampleFunction = a => a + 100;
 
 //クロージャ
-function outerFunction() {
-  let value = 10; // 外部変数
-  // const value = 10; //constで定義した場合、再代入できないためエラーになる
-  function innerFunction() {
-    value = 30;
-    value++;
-    console.log(value); // 外部変数にアクセス
-  }
+// function outerFunction() {
+//   let value = 10; // 外部変数
+//   // const value = 10; //constで定義した場合、再代入できないためエラーになる
+//   function innerFunction() {
+//     value = 30;
+//     value++;
+//     console.log(value); // 外部変数にアクセス
+//   }
 
-  innerFunction(); // 内部関数を呼び出す
-}
+//   innerFunction(); // 内部関数を呼び出す
+// }
 
-outerFunction(); // 11
+// outerFunction(); // 11
 
 //コールバック関数
-function greeting(name) {
-  alert(`こんにちは、${name}`);
-}
+// function greeting(name) {
+//   alert(`こんにちは、${name}`);
+// }
 
-function processUserInput(callback) {
-  const name = prompt("名前を入力してください:");
-  callback(name);
-}
-processUserInput(greeting);
+// function processUserInput(callback) {
+//   const name = prompt("名前を入力してください:");
+//   callback(name);
+// }
+// processUserInput(greeting);
+
+//day12
+
+const str = "123";
+console.log(parseInt(str)); // 123
+console.log(parseFloat(str)); // 123
+
+const int = 123;
+console.log(String(int)); // "123"
+
+let user = {
+  name: "Alice",
+  age: 25,
+  isAdmin: true
+};
+
+console.log(Object.keys(user)); // ["name", "age", "isAdmin"]
+console.log(Object.values(user)); // ["Alice", 25, true]
+console.log(Object.entries(user)); // [["name", "Alice"], ["age", 25], ["isAdmin", true]]
+
+const employees = [
+  { name: "Alice", age: 25, salary: 50000 },
+  { name: "Bob", age: 30, salary: 40000 },
+  { name: "Charlie", age: 35, salary: 60000 },
+];
+
+console.log(employees);
+
+const highEarningEmployees = Object.entries(employees)
+.filter(([name, details]) => {
+  return details.salary >= 50000;
+})
+.map(([name, details]) => {
+  return { name: name, details: details.salary };
+});
+console.log(highEarningEmployees);
