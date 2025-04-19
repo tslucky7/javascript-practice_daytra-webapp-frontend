@@ -26,18 +26,33 @@
           <input type="date" id="new-deadline" placeholder="期限を入力">
         </div>
         <div class="">
+          <label for="new-status">ステータス</label>
+          <select id="new-status">
+            <option value="未着手">未着手</option>
+            <option value="進行中">進行中</option>
+            <option value="完了">完了</option>
+          </select>
+        </div>
+        <div class="">
           <button id="register" type="button">登録</button>
         </div>
       </div>
     </section>
     <section>
       <h2>TODO一覧</h2>
+      <div class="filter">
+        <label for="filter">絞り込み
+          <input type="text" id="filter" placeholder="絞り込み">
+        </label>
+      </div>
       <table class="todo-list">
         <thead>
           <tr>
             <th>TODO名</th>
             <th>担当者</th>
             <th>期限</th>
+            <th>ステータス</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody id="todo-list">
