@@ -26,6 +26,14 @@
           <input type="date" id="new-deadline" placeholder="期限を入力">
         </div>
         <div class="">
+          <label for="new-status">ステータス</label>
+          <select id="new-status">
+            <option value="未着手">未着手</option>
+            <option value="進行中">進行中</option>
+            <option value="完了">完了</option>
+          </select>
+        </div>
+        <div class="">
           <button id="register" type="button">登録</button>
         </div>
       </div>
@@ -43,6 +51,7 @@
             <th>TODO名</th>
             <th>担当者</th>
             <th>期限</th>
+            <th>ステータス</th>
             <th>操作</th>
           </tr>
         </thead>

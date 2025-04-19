@@ -7,6 +7,7 @@ const registerNewTodo = () => {
   const newTodoName = document.getElementById("new-todo");
   const newPerson = document.getElementById("new-person");
   const newDeadline = document.getElementById("new-deadline");
+  const newStatus = document.getElementById("new-status");
 
   //TODOリストに新しいTODOを追加
   todoList.push({
@@ -14,6 +15,7 @@ const registerNewTodo = () => {
     todoName: newTodoName.value,
     person: newPerson.value,
     deadline: newDeadline.value,
+    status: newStatus,
   });
 };
 
@@ -51,6 +53,31 @@ const appendTodoListElem = () => {
       const deadlineTdElem = document.createElement("td");
       deadlineTdElem.textContent = todo.deadline;
 
+      //Statusのtd要素を作成
+      const statusTdElem = document.createElement("td");
+      // select要素を作成
+      const statusSelectElem = document.createElement("select");
+      // 選択肢を追加
+      const todoStatusOptions = Array.from(todo.status.options);
+      console.log(todoStatusOptions);
+      const statusOptions = todoStatusOptions.map(option => option.value);
+      statusOptions.forEach((_status) => {
+        const optionElem = document.createElement("option");
+        optionElem.value = _status;
+        optionElem.textContent = _status;
+        // デフォルト値を設定
+        if (_status === todo.status) {
+          optionElem.selected = true;
+        }
+        statusSelectElem.appendChild(optionElem);
+      });
+      // ステータス変更時にTODOリストを更新
+      statusSelectElem.addEventListener("change", (event) => {
+        todo.status = event.target.value; // 選択された値を更新
+      });
+
+      statusTdElem.appendChild(statusSelectElem);
+
       //削除のbutton要素を生成
       const removeButtonElem = document.createElement("button");
       removeButtonElem.textContent = "削除";
@@ -68,6 +95,7 @@ const appendTodoListElem = () => {
       trElem.appendChild(todoNameTdElem);
       trElem.appendChild(personTdElem);
       trElem.appendChild(deadlineTdElem);
+      trElem.appendChild(statusTdElem);
       trElem.appendChild(buttonTdElem);
 
       //tbody要素にtr要素を追加
