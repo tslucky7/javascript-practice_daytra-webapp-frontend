@@ -35,6 +35,24 @@ const removeTodoListElem = () => {
   }
 };
 
+//編集ボタンがクリックされた時に該当のtodoを編集
+const updateTodoById = (id) => {
+  const todo = todoList.find((todo) => todo.id === id);
+  if (todo) {
+    const newTodoName = document.createElement("input");
+    const newPerson = document.createElement("input");
+    const newDeadline = document.createElement("input");
+    const newStatus = document.createElement("select");
+
+    if (newTodoName && newPerson && newDeadline && newStatus) {
+      todo.todoName = newTodoName;
+      todo.person = newPerson;
+      todo.deadline = newDeadline;
+      todo.status = newStatus;
+    }
+  }
+};
+
 //削除ボタンがクリックされた時に該当のtodoを削除
 const removeTodoById = (id) => {
   todoList = todoList.filter((todo) => todo.id !== id);
@@ -85,6 +103,14 @@ const appendTodoListElem = async () => {
 
       statusTdElem.appendChild(statusSelectElem);
 
+      //編集のbutton要素を生成
+      const updateButtonElem = document.createElement("button");
+      updateButtonElem.textContent = "編集";
+      updateButtonElem.addEventListener("click", () => {
+        updateTodoById(todo.id);
+        appendTodoListElem();
+      });
+
       //削除のbutton要素を生成
       const removeButtonElem = document.createElement("button");
       removeButtonElem.textContent = "削除";
@@ -93,9 +119,10 @@ const appendTodoListElem = async () => {
         appendTodoListElem();
       });
 
-      //削除ボタン表示のためのtd要素を作成
-      const buttonTdElem = document.createElement("td");
-      buttonTdElem.appendChild(removeButtonElem);
+      //編集・削除ボタン表示のためのtd要素を作成
+      const ButtonTdElem = document.createElement("td");
+      ButtonTdElem.appendChild(updateButtonElem);
+      ButtonTdElem.appendChild(removeButtonElem);
 
       //tr要素を作成、td要素を追加
       const trElem = document.createElement("tr");
@@ -103,7 +130,7 @@ const appendTodoListElem = async () => {
       trElem.appendChild(personTdElem);
       trElem.appendChild(deadlineTdElem);
       trElem.appendChild(statusTdElem);
-      trElem.appendChild(buttonTdElem);
+      trElem.appendChild(ButtonTdElem);
 
       //tbody要素にtr要素を追加
       const tbodyElem = document.getElementById("todo-list");
