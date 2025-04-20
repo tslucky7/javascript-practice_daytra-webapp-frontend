@@ -265,34 +265,117 @@ const sampleFunction = a => a + 100;
 
 //day14
 
+// document.addEventListener("DOMContentLoaded", () => {
+//   const button = document.getElementById("my-button");
+//   button.addEventListener("click", () => {
+//     const test = document.getElementById("test");
+//     test.textContent = "ボタンがクリックされました！";
+//   });
+
+//   const div = document.getElementById("my-div");
+//   div.addEventListener("mouseover", () => {
+//     div.textContent = "マウスオーバーしました！";
+//   });
+
+//   div.addEventListener("mouseout", () => {
+//     div.textContent = "マウスアウトしました！";
+//   });
+
+//   const input = document.getElementById("keydown-input");
+//   input.addEventListener("keydown", (event) => {
+//     console.log(`キーが押されました: ${event.key}`);
+//   });
+//   input.addEventListener("keyup", (event) => {
+//     console.log(`キーが離されました: ${event.key}`);
+//   });
+
+//   const nameInput = document.getElementById("name-input");
+//   nameInput.addEventListener("input", () => {
+//     const nameSpan = document.getElementById("name");
+//     nameSpan.textContent = nameInput.value;
+//   });
+// });
+
+// setTimeout(() => {
+//   console.log("Hello, world! This is a test.");
+// }, 2000);
+
+// const promiseTestFunc = () => {
+//   const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const isSuccess = true; // 成功する場合
+//       if (isSuccess) {
+//         resolve("Promiseが成功しました。");
+//       } else {
+//         reject(new Error("Promiseが失敗しました。"));
+//       }
+//     }, 2000);
+//   });
+
+//   return promise;
+// }
+
+// promiseTestFunc()
+//   .then((data) => console.log(data))
+//   .catch((error) => console.error(error))
+
+const fetchDataAsync = async() => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+  if (!response.ok) {
+    console.error("Network response was not ok");
+  }
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+const appendUserList = (userList) => {
+  const userListElem = document.getElementById("user-list");
+  //小要素を全て削除する
+  while (userListElem.firstChild) {
+    userListElem.firstChild.remove();
+  }
+
+  userList.forEach(user => {
+    //各データのidを作る
+    const idTdElem = document.createElement("td");
+    idTdElem.textContent = user.id;
+
+    const nameTdElem = document.createElement("td");
+    nameTdElem.textContent = user.name;
+
+    const userNameTdElem = document.createElement("td");
+    userNameTdElem.textContent = user.username;
+
+    const phoneTdElem = document.createElement("td");
+    phoneTdElem.textContent = user.phone;
+
+    const emailTdElem = document.createElement("td");
+    emailTdElem.textContent = user.email;
+
+    const webSiteTdElem = document.createElement("td");
+    webSiteTdElem.textContent = user.website;
+
+    //trを作成
+    const trElem = document.createElement("tr");
+    trElem.appendChild(idTdElem);
+    trElem.appendChild(nameTdElem);
+    trElem.appendChild(userNameTdElem);
+    trElem.appendChild(phoneTdElem);
+    trElem.appendChild(emailTdElem);
+    trElem.appendChild(webSiteTdElem);
+
+    userListElem.appendChild(trElem);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const button = document.getElementById("my-button");
-  button.addEventListener("click", () => {
-    const test = document.getElementById("test");
-    test.textContent = "ボタンがクリックされました！";
-  });
-
-  const div = document.getElementById("my-div");
-  div.addEventListener("mouseover", () => {
-    div.textContent = "マウスオーバーしました！";
-  });
-
-  div.addEventListener("mouseout", () => {
-    div.textContent = "マウスアウトしました！";
-  });
-
-  const input = document.getElementById("keydown-input");
-  input.addEventListener("keydown", (event) => {
-    console.log(`キーが押されました: ${event.key}`);
-  });
-  input.addEventListener("keyup", (event) => {
-    console.log(`キーが離されました: ${event.key}`);
-  });
-
-  const nameInput = document.getElementById("name-input");
-  nameInput.addEventListener("input", () => {
-    const nameSpan = document.getElementById("name");
-    nameSpan.textContent = nameInput.value;
+  const fetchButtonElem = document.getElementById("fetch-button");
+  fetchButtonElem.addEventListener("click", async () => {
+    const userList = await fetchDataAsync();
+    appendUserList(userList);
   });
 });
-
