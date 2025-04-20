@@ -9,6 +9,13 @@ const registerNewTodo = () => {
   const newDeadline = document.getElementById("new-deadline");
   const newStatus = document.getElementById("new-status");
 
+  //未入力項目がある場合はアラートを表示
+  if (newTodoName.value === "" || newPerson.value === "" || newDeadline.value === "") {
+    alert("すべての項目を入力してください");
+    return;
+  }
+  console.log(newTodoName.value);
+
   //TODOリストに新しいTODOを追加
   todoList.push({
     id : Date.now(),
@@ -33,7 +40,7 @@ const removeTodoById = (id) => {
   todoList = todoList.filter((todo) => todo.id !== id);
 };
 
-const appendTodoListElem = () => {
+const appendTodoListElem = async () => {
   //TODOリストを全て削除
   removeTodoListElem();
 
