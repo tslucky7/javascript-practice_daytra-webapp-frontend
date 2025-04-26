@@ -64,7 +64,6 @@
 //     console.log("今日は他の日です。");
 // }
 
-
 // //for文
 // for (let i = 0; i < 5; i++) {
 //   console.log("カウント: " + i);
@@ -164,7 +163,7 @@
 // const sampleFunction = (a) => a + 100;
 
 //丸括弧の省略も可能
-const sampleFunction = a => a + 100;
+// const sampleFunction = a => a + 100;
 
 //クロージャ
 // function outerFunction() {
@@ -319,7 +318,7 @@ const sampleFunction = a => a + 100;
 //   .then((data) => console.log(data))
 //   .catch((error) => console.error(error))
 
-const fetchDataAsync = async() => {
+const fetchDataAsync = async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/users", {
     method: "POST",
     body: JSON.stringify({}),
@@ -339,7 +338,7 @@ const appendUserList = (userList) => {
     userListElem.firstChild.remove();
   }
 
-  userList.forEach(user => {
+  userList.forEach((user) => {
     //各データのidを作る
     const idTdElem = document.createElement("td");
     idTdElem.textContent = user.id;
@@ -370,7 +369,7 @@ const appendUserList = (userList) => {
 
     userListElem.appendChild(trElem);
   });
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const fetchButtonElem = document.getElementById("fetch-button");
