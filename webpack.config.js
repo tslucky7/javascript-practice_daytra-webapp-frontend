@@ -2,7 +2,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./TODO-App/js/script.js",
+  entry: "./typescript-practice/js/index.ts",
   output: {
     path: `${__dirname}/dist/`,
     filename: 'bundle.js',
@@ -22,26 +22,21 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        //拡張子jsのファイル（正規表現）
-        test: /\.js$/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-env"
-              ],
-            },
-          },
-        ],
-      },
+        //拡張子tsの場合
+        test: /\.ts$/,
+        //TypeScriptをコンパイルするためのts-loaderを使用
+        use: "ts-loader",
+      }
     ],
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./TODO-App/index.html",
+      template: "./typescript-practice/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],
-  target: ["web", "es5"],
+  resolve: {
+    //import文で.tsファイルを指定できるようにする 書き方：拡張子を配列で指定する
+    extensions: [".ts", ".js"],
+  },
 };
