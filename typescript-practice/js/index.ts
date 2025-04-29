@@ -1,6 +1,6 @@
 import "../css/index.css"
-import { getNewTodo, Todo, appendTodoList } from "./todo";
-import { getElementById } from "./utils/dom";
+import { getNewTodo, Todo, appendTodoList, removeTodoListElement } from "./todo";
+import { getElementById, getInputElementById } from "./utils/dom";
 
 // let greet = "Hello, TypeScript!";
 // console.log(greet);
@@ -93,14 +93,35 @@ import { getElementById } from "./utils/dom";
 // createUser({ userId: 2, userName: "Jane Doe", userEmail: "jane@example.com", isAdmin: true });
 
 let todoList: Todo[] = [];
+let filterWord: string = "";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
+  //登録ボタン押下時の処理
   const registerButton = getElementById("register");
   registerButton.addEventListener("click", () => {
     //新しいTODOをDOMから取得する
     todoList = [...todoList, getNewTodo()];
     //TODO一覧を表示する
-    appendTodoList(todoList);
+    removeTodoListElement();
+    appendTodoList(todoList, deleteTodo, filterWord);
+  });
+
+  //絞り込む入力時の処理
+  const filterInput = getInputElementById("filter");
+  filterInput.addEventListener("input", () => {
+    filterWord = filterInput.value;
+    //TODO一覧を表示する
+    removeTodoListElement();
+    appendTodoList(todoList, deleteTodo, filterWord);
   });
 });
+
+/**
+ * TODOを削除する
+ * @param id
+ */
+const deleteTodo = (id: number) => {
+  todoList = todoList.filter((todo) => todo.id !== id);
+  removeTodoListElement();
+  appendTodoList(todoList, deleteTodo, filterWord);
+}
