@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "main": "TODO-App/js/script.js",
+  "main": "typescript-practice/js/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '**/*.js'",
