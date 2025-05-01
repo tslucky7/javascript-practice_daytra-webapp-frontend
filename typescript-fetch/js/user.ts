@@ -1,3 +1,5 @@
+import { createElement, getElementById } from "./utils/dom";
+
 type User = {
   id: number;
   name: string;
@@ -37,5 +39,22 @@ export const fetchUserList = async () => {
     throw Error("API通信に失敗しました");
   }
   const userList: User[] = await response.json();
+  //バリデーション
+  userList.forEach((user) => {
+    if (typeof user.id !== "number") {
+      throw new Error("idが不正です");
+    }
+  });
   return userList;
+}
+
+/**
+ * DOMにユーザー一覧を表示する
+ */
+export const appendUserList = (userList: User[]) => {
+  userList.forEach((user) => {
+    const li = createElement("li", user.name);
+    const ul = getElementById("user-list");
+    ul.appendChild(li);
+  })
 }

@@ -1,4 +1,4 @@
-import { fetchUserList } from "./user";
+import { appendUserList, fetchUserList } from "./user";
 import { getElementById } from "./utils/dom";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,5 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const userList = await fetchUserList();
     console.log(userList);
     //ユーザー一覧をDOMに出力
+    appendUserList(userList);
   })
 });
