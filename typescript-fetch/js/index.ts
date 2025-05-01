@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   userButton.addEventListener("click", async () => {
     //APIからユーザ情報を取得する
     const userList = await fetchUserList();
+    console.log(userList);
     //ユーザー一覧をDOMに出力
   })
 });
