@@ -2,7 +2,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./typescript-practice/js/index.ts",
+  entry: "./typescript-fetch/js/index.ts",
   output: {
     path: `${__dirname}/dist/`,
     filename: 'bundle.js',
@@ -31,7 +31,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./typescript-practice/index.html",
+      template: "./typescript-fetch/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],
