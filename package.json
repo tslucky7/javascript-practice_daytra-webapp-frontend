@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "typescript",
   "version": "1.0.0",
-  "main": "typescript-practice/js/index.ts",
+  "main": "typescript-fetch/js/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '**/*.js'",
